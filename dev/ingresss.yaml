@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  # namespace: myapp-service
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx"},"name":"demo-app-k8s","namespace":"dev"},"spec":{"rules":[{"host":"demo-app-k8s-dev.24fix.tech","http":{"paths":[{"backend":{"service":{"name":"demo-app-k8s","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+    kubernetes.io/ingress.class: nginx
+status:
+  loadBalancer: {}
+spec:
+  rules:
+    - host: demo-app-k8s-dev.24fix.tech
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: demo-app-k8s
+                port:
+                  number: 80
