@@ -12,21 +12,9 @@ spec:
       labels:
         app: myapp
     spec:
-      tolerations:
-      - key: "platform"
-        operator: "Equal"
-        value: "lin11n"
-        effect: "NoSchedule"
       containers:
       - name: myapp
         image: nanajanashia/argocd-app:1.2
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "200m"
-          requests:
-            memory: "128Mi"
-            cpu: "50m"
         ports:
         - containerPort: 8080
       
